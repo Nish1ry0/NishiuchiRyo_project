@@ -2,28 +2,23 @@ package product;
 
 public class Main {
 	public static void main(String[] args) {
-		// ProductsManagerのインスタンスを作成
-		ProductManager manager = new ProductManager();
+		// Productのインスタンス
+		Product product1 = new Product(1, "普通の製品", 1000, 100);
+		System.out.println(product1);
 
-		System.out.println("---商品を5つ追加して全てを表示---");
-		// Productオブジェクトを作成して追加
-		manager.addProduct(new Product(1, "冷蔵庫", 50000, 10));
-		manager.addProduct(new Product(2, "ソファ", 30000, 5));
-		manager.addProduct(new Product(3, "米", 2000, 3));
-		manager.addProduct(new Product(4, "小説", 1500, 4));
-		manager.addProduct(new Product(5, "Tシャツ", 1500, 5));
-		manager.displayAllProducts();
-		System.out.println();
+		// DiscountedProductのインスタンス
+		DiscountedProduct discountedProduct1 = new DiscountedProduct(2, "割引製品A", 2000, 50, 0.2);
+		System.out.println(discountedProduct1);
+		System.out.println("割引価格: " + discountedProduct1.calculateDiscountedPrice());
 
-		System.out.println("---商品を1つ削除して全てを表示---");
-		manager.removeProduct(1); // IDが1の商品を削除
-		manager.displayAllProducts();
-		System.out.println();
+		// ポリモーフィズム
+		Product product2 = new DiscountedProduct(3, "割引製品B", 3000, 30, 0.3);
+		System.out.println(product2);
 
-		System.out.println("---商品名「米」の情報を表示---");
-		Product rice = manager.getProductByName("米");
-		if (rice != null) {
-			System.out.println(rice);
+		// 型チェックとキャスト
+		if (product2 instanceof DiscountedProduct) {
+			DiscountedProduct discountedProduct2 = (DiscountedProduct) product2;
+			System.out.println("割引価格 (キャスト後): " + discountedProduct2.calculateDiscountedPrice());
 		}
 	}
 }
