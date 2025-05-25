@@ -10,11 +10,11 @@ public class Main {
 		String choice;
 
 		System.out.println("---商品を5つ追加して全てを表示---");
-		manager.addProduct(new Product(1, "冷蔵庫", 50000, 10));
-		manager.addProduct(new Product(2, "ソファ", 30000, 5));
-		manager.addProduct(new Product(3, "米", 2000, 3));
-		manager.addProduct(new Product(4, "小説", 1500, 4));
-		manager.addProduct(new Product(5, "Tシャツ", 1500, 5));
+		manager.addProduct(new Product(1, "冷蔵庫", 50000, 10, 1));
+		manager.addProduct(new Product(2, "ソファ", 30000, 5, 1));
+		manager.addProduct(new Product(3, "米", 2000, 3, 2));
+		manager.addProduct(new Product(4, "小説", 1500, 4, 2));
+		manager.addProduct(new Product(5, "Tシャツ", 1500, 5, 3));
 		manager.displayAllProducts();
 		System.out.println();
 
@@ -32,7 +32,9 @@ public class Main {
 			switch (choice) {
 			case "1":
 				Product newProduct = InputHandler.createProductFromInput();
-				manager.addProduct(newProduct);
+				if (newProduct != null) {
+					manager.addProduct(newProduct);
+				}
 				break;
 			case "2":
 				System.out.print("取得したい商品名を入力してください: ");

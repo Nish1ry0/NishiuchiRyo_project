@@ -5,8 +5,8 @@ public class Product {
 	private String name;
 	private int price;
 	private int stock;
+	private int categoryId;
 
-	// コンストラクタ
 	public Product(int id, String name, int price, int stock) {
 		this.id = id;
 		this.name = name;
@@ -15,15 +15,28 @@ public class Product {
 	}
 
 	public Product(String name, int price, int stock) {
-
 		this.id = -1;
 		this.name = name;
 		this.price = price;
 		this.stock = stock;
-
 	}
 
-	// getterメソッド
+	public Product(String name, int price, int stock, int categoryId) {
+		this.id = -1;
+		this.name = name;
+		this.price = price;
+		this.stock = stock;
+		this.categoryId = categoryId;
+	}
+
+	public Product(int id, String name, int price, int stock, int categoryId) {
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.stock = stock;
+		this.categoryId = categoryId;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -40,7 +53,10 @@ public class Product {
 		return stock;
 	}
 
-	// setterメソッド
+	public int getCategoryId() {
+		return categoryId;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -57,8 +73,12 @@ public class Product {
 		this.stock = stock;
 	}
 
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
 	@Override
 	public String toString() {
-		return "ID: " + id + ", 名前: " + name + ", 価格: " + price + "円, 在庫: " + stock + "個";
+		return "ID: " + id + ", 名前: " + name + ", 価格: " + price + "円, 在庫: " + stock + "個, カテゴリID: " + categoryId;
 	}
 }

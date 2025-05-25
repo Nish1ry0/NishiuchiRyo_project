@@ -7,5 +7,7 @@ public class SubtractLoop2 {
 			System.out.println(num);
 			num--;
 		} while (num >= 0);
+		
+		System.out.println("終了");
 	}
 }

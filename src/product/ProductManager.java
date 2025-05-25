@@ -10,7 +10,6 @@ public class ProductManager {
 		this.products = new ArrayList<>();
 	}
 
-	// 商品登録
 	public void addProduct(Product product) {
 		if (product != null) {
 			this.products.add(product);
@@ -20,7 +19,6 @@ public class ProductManager {
 		}
 	}
 
-	// 商品削除（商品名で削除）
 	public void removeProductByName(String name) {
 		boolean removed = false;
 		for (int i = 0; i < products.size(); i++) {
@@ -36,7 +34,6 @@ public class ProductManager {
 		}
 	}
 
-	// 商品情報取得（商品名から情報を取得）
 	public Product getProductByName(String name) {
 		for (Product product : products) {
 			if (product.getName().equals(name)) {
@@ -47,7 +44,6 @@ public class ProductManager {
 		return null;
 	}
 
-	// 商品検索（商品名で検索）
 	public List<Product> searchProductByName(String keyword) {
 		List<Product> results = new ArrayList<>();
 		for (Product product : products) {
@@ -55,19 +51,11 @@ public class ProductManager {
 				results.add(product);
 			}
 		}
-		if (results.isEmpty()) {
-			System.out.println("キーワード '" + keyword + "' を含む商品は見つかりませんでした。");
-		}
 		return results;
 	}
 
-	// 全ての商品を表示
 	public void displayAllProducts() {
-		if (products.isEmpty()) {
-			System.out.println("登録されている商品はありません。");
-			return;
-		}
-		System.out.println("--- 商品一覧 ---");
+		System.out.println("\n--- 商品一覧 ---");
 		for (Product product : products) {
 			System.out.println(product);
 		}
