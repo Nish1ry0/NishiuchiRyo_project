@@ -1,5 +1,6 @@
 package product;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputHandler {
@@ -19,45 +20,14 @@ public class InputHandler {
 				throw new IllegalArgumentException("商品名が空です。");
 			}
 
-			System.out.print("価格を入力してください: ");
-			if (scanner.hasNextInt()) {
-				price = scanner.nextInt();
-				if (price < 0) {
-					throw new IllegalArgumentException("価格がマイナスの値です。");
-				}
-			} else {
-				scanner.next();
-				throw new IllegalArgumentException("価格には数値を入力してください。");
-			}
-
-			System.out.print("在庫数を入力してください: ");
-			if (scanner.hasNextInt()) {
-				stock = scanner.nextInt();
-				if (stock < 0) {
-					throw new IllegalArgumentException("在庫数がマイナスの値です。");
-				}
-			} else {
-				scanner.next();
-				throw new IllegalArgumentException("在庫数には数値を入力してください。");
-			}
-
-			System.out.print("カテゴリIDを入力してください: ");
-			if (scanner.hasNextInt()) {
-				categoryId = scanner.nextInt();
-				if (categoryId < 0) {
-					throw new IllegalArgumentException("カテゴリIDは0以上の数値を入力してください。");
-				}
-			} else {
-				scanner.next();
-				throw new IllegalArgumentException("カテゴリIDには数値を入力してください。");
-			}
+			price = getIntInput("価格を入力してください: ");
+			stock = getIntInput("在庫数を入力してください: ");
+			categoryId = getIntInput("カテゴリIDを入力してください: ");
 
 			product = new Product(name, price, stock, categoryId);
 
 		} catch (IllegalArgumentException e) {
 			System.err.println("入力エラー: " + e.getMessage());
-		} finally {
-			scanner.nextLine();
 		}
 
 		return product;
@@ -68,16 +38,6 @@ public class InputHandler {
 			scanner.close();
 			System.out.println("Scanner を閉じました。");
 		}
-	}
-
-	public static void main(String[] args) {
-		Product newProduct = createProductFromInput();
-		if (newProduct != null) {
-			System.out.println("入力された商品情報: " + newProduct);
-		} else {
-			System.out.println("商品の登録に失敗しました。");
-		}
-		closeScanner();
 	}
 
 	public static String getStringInput(String prompt) {
@@ -91,19 +51,29 @@ public class InputHandler {
 			try {
 				System.out.print(prompt);
 				value = scanner.nextInt();
+				scanner.nextLine();
 				if (value < 0) {
 					throw new IllegalArgumentException("0以上の数値を入力してください。");
 				}
 				break;
-			} catch (java.util.InputMismatchException e) {
-				System.err.println("無効な入力です。数値を入力してください。");
+			} catch (InputMismatchException e) {
+				System.err.println("入力エラー: 数値を入力してください。");
 				scanner.next();
+				scanner.nextLine();
 			} catch (IllegalArgumentException e) {
 				System.err.println("入力エラー: " + e.getMessage());
-			} finally {
-				scanner.nextLine();
 			}
 		}
 		return value;
+	}
+
+	public static void main(String[] args) {
+		Product newProduct = createProductFromInput();
+		if (newProduct != null) {
+			System.out.println("入力された商品情報: " + newProduct);
+		} else {
+			System.out.println("商品の登録に失敗しました。");
+		}
+		closeScanner();
 	}
 }
