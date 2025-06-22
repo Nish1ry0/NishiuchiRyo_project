@@ -16,7 +16,7 @@ public class CategoryBean implements Serializable {
 		this.categoryName = categoryName;
 	}
 
-	// GetterとSetter
+	// Getter&Setter
 
 	public int getCategoryId() {
 		return categoryId;
