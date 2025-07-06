@@ -68,7 +68,7 @@ th {
 		<table>
 			<tr>
 				<th>カテゴリID:</th>
-				<td><input type="text" name="categoryId"
+				<td><input type="number" name="categoryId"
 					value="<%=request.getParameter("categoryId") != null ? request.getParameter("categoryId") : ""%>"
 					required> <%-- HTML5のrequired属性で必須チェック（ブラウザ側） --%></td>
 			</tr>
