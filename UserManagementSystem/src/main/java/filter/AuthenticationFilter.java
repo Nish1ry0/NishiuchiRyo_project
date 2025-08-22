@@ -1,4 +1,4 @@
-package com.example.webapp;
+package filter;
 import java.io.IOException;
 
 import jakarta.servlet.Filter;

@@ -1,4 +1,5 @@
-package com.example.webapp;
+package model.entity;
+
 import java.io.Serializable;
 
 public class User implements Serializable {

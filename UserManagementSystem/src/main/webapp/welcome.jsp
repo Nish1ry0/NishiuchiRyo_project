@@ -1,5 +1,7 @@
+<!-- webapp/welcome.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="model.entity.User"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -14,16 +16,16 @@
 	class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
 	<%-- セッションからユーザー情報を取得 --%>
 	<%
-	String username = (String) session.getAttribute("user");
+	User user = (User) session.getAttribute("user");
 	%>
 
 	<div
 		class="bg-white p-8 rounded-lg shadow-lg text-center w-full max-w-md">
 		<h2 class="text-3xl font-bold mb-4 text-gray-800">
 			<%
-			if (username != null) {
+			if (user != null) {
 			%>
-			ようこそ、<%=username%>さん！
+			ようこそ、<%=user.getUsername()%>さん！
 			<%
 			} else {
 			%>
