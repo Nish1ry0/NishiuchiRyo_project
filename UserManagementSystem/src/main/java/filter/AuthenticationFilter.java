@@ -1,4 +1,5 @@
 package filter;
+
 import java.io.IOException;
 
 import jakarta.servlet.Filter;
@@ -11,9 +12,10 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = { "/welcome.jsp" })
+@WebFilter(urlPatterns = { "/welcome.jsp", "/productList", "/productRegister" })
 public class AuthenticationFilter implements Filter {
 
+	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
@@ -22,7 +24,6 @@ public class AuthenticationFilter implements Filter {
 
 		if (session == null || session.getAttribute("user") == null) {
 			request.setAttribute("errorMessage", "セッションがありません。ログインしてください。");
-
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
 			dispatcher.forward(request, response);
 			return;

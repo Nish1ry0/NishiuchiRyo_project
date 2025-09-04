@@ -15,11 +15,6 @@ public class ConnectionManager {
 	private static final String DB_PASS = "Ryo12240130";
 	private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 
-	/**
-	 * データベースへの接続を取得
-	 * @return データベースへのConnectionオブジェクト
-	 * @throws SQLException データベース接続エラーが発生した場合
-	 */
 	public static Connection getConnection() throws SQLException {
 		Connection con = null;
 		try {
