@@ -43,6 +43,13 @@ th {
 	margin-bottom: 20px;
 }
 </style>
+<script>
+	function confirmDelete(productId) {
+		if (confirm("本当にこの商品を削除しますか？")) {
+			window.location.href = "productDelete?id=" + productId;
+		}
+	}
+</script>
 </head>
 <body>
 	<h1>商品リスト</h1>
@@ -68,6 +75,7 @@ th {
 						<th>価格</th>
 						<th>在庫数</th>
 						<th>カテゴリ</th>
+						<th>操作</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -78,17 +86,22 @@ th {
 							<td><c:out value="${product.price}" /></td>
 							<td><c:out value="${product.stock}" /></td>
 							<td><c:out value="${product.category.categoryName}" /></td>
+							<td><a
+								href="productDeleteConfirm?id=<c:out value="${product.productId}"/>">削除</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</c:when>
 		<c:otherwise>
-			<p>商品がありません。</p>
+			<p>商品が見つかりませんでした。</p>
 		</c:otherwise>
 	</c:choose>
-	<div style="margin-top: 20px;">
+	<p>
 		<a href="<%=request.getContextPath()%>/welcome.jsp">トップページへ戻る</a>
-	</div>
+	</p>
+	<p>
+		<a href="<%=request.getContextPath()%>/logout">ログアウト</a>
+	</p>
 </body>
 </html>

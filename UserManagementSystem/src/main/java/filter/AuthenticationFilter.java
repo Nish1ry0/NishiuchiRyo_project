@@ -12,7 +12,8 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = { "/welcome.jsp", "/productList", "/productRegister" })
+@WebFilter(urlPatterns = { "/welcome.jsp", "/productRegister", "/productList", "/productDeleteConfirm",
+		"/productDelete" })
 public class AuthenticationFilter implements Filter {
 
 	@Override
@@ -24,6 +25,7 @@ public class AuthenticationFilter implements Filter {
 
 		if (session == null || session.getAttribute("user") == null) {
 			request.setAttribute("errorMessage", "セッションがありません。ログインしてください。");
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
 			dispatcher.forward(request, response);
 			return;
